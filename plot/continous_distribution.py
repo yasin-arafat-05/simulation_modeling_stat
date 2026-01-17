@@ -107,7 +107,7 @@ def normal_distn():
         yaxis=dict(title="yaxis",showgrid=False),
         plot_bgcolor="black",
         paper_bgcolor="black",
-        title=dict(text="Weibull Distribution",font=dict(size=30,color="white",weight=500))
+        title=dict(text="Normal Distribution",font=dict(size=30,color="white",weight=500))
     )
     
     trace = [trace1]
@@ -129,7 +129,7 @@ def log_normal_distn():
         yaxis=dict(title="yaxis",showgrid=False),
         plot_bgcolor="black",
         paper_bgcolor="black",
-        title=dict(text="Weibull Distribution",font=dict(size=30,color="white",weight=500))
+        title=dict(text="LogNormal Distribution",font=dict(size=30,color="white",weight=500))
     )
     
     trace = [trace1]
@@ -150,7 +150,7 @@ def beta_distn():
         yaxis=dict(title="yaxis",showgrid=False),
         plot_bgcolor="black",
         paper_bgcolor="black",
-        title=dict(text="Weibull Distribution",font=dict(size=30,color="white",weight=500))
+        title=dict(text="Beta Distribution",font=dict(size=30,color="white",weight=500))
     )
     
     trace = [trace1]
@@ -172,7 +172,7 @@ def pearson_distn():
         yaxis=dict(title="yaxis",showgrid=False),
         plot_bgcolor="black",
         paper_bgcolor="black",
-        title=dict(text="Weibull Distribution",font=dict(size=30,color="white",weight=500))
+        title=dict(text="Pearson Distribution",font=dict(size=30,color="white",weight=500))
     )
     
     trace = [trace1]
@@ -182,11 +182,14 @@ def pearson_distn():
 
 # ========= 09. Log-Logistics Distribution =========
 def log_logistics_distn():
-    alpha1 = 1 #>0
-    alpha2  = 1 #>0
-    # 1>x>0 
-    x = np.linspace(0,1,1000)
-    y = stats.lognorm.pdf(x,alpha1,alpha2)
+    alpha = 1 
+    beta = 2 
+    
+    # x>0 
+    x = np.linspace(0.001,6,1000)
+    
+    # scipy use one parameter: 
+    y = stats.fisk.pdf(x,alpha,scale=beta)
     trace1 = go.Scatter(x=x,y=y,mode="lines",line=dict(color="red",width=3))
     layout = go.Layout(
         template="plotly_dark",
@@ -194,20 +197,24 @@ def log_logistics_distn():
         yaxis=dict(title="yaxis",showgrid=False),
         plot_bgcolor="black",
         paper_bgcolor="black",
-        title=dict(text="Weibull Distribution",font=dict(size=30,color="white",weight=500))
+        title=dict(text="LogLogistics Distribution",font=dict(size=30,color="white",weight=500))
     )
     
     trace = [trace1]
     fig = go.Figure(data=trace,layout=layout)
     return fig   
 
-# ========= 10. Johnson Distribution =========
+# ========= 10. Johnson^B Distribution =========
 def johnson_distn():
-    alpha1 = 1 #>0
-    alpha2  = 1 #>0
-    # 1>x>0 
-    x = np.linspace(0,1,1000)
-    y = stats.lognorm.pdf(x,alpha1,alpha2)
+    
+    alpha1 = 0 # (-inf,inf)
+    alpha2  = 2 # >0 
+    a = 0 
+    b = 2 
+    
+    # a<x<b: 
+    x = np.linspace(a+0.001,b-0.001,1000)
+    y = stats.johnsonsb.pdf(x,alpha1,alpha2,loc=a,scale=(b-a))
     trace1 = go.Scatter(x=x,y=y,mode="lines",line=dict(color="red",width=3))
     layout = go.Layout(
         template="plotly_dark",
@@ -215,7 +222,7 @@ def johnson_distn():
         yaxis=dict(title="yaxis",showgrid=False),
         plot_bgcolor="black",
         paper_bgcolor="black",
-        title=dict(text="Weibull Distribution",font=dict(size=30,color="white",weight=500))
+        title=dict(text="JohnsonB Distribution",font=dict(size=30,color="white",weight=500))
     )
     
     trace = [trace1]

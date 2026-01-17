@@ -71,36 +71,54 @@ app.layout = html.Div([
     # === 2.5 Normal ===
     html.Div([
         html.H2("Normal",style={'color':'white','text-align':'center'}),
+        html.Div([
+            dcc.Graph(id="id_normal",figure=cd.normal_distn())
+        ])
         ],className="normal"),
     
     
     # === 2.6 LogNormal ===
     html.Div([
         html.H2("LogNormal Distribution",style={'color':'white','text-align':'center'}),
+        html.Div([
+            dcc.Graph(id="id_lognormal",figure=cd.log_normal_distn())
+        ])
         ],className="lognormal"),
     
     
     # === 2.7 Beta ===
     html.Div([
         html.H2("Beta Distribution",style={'color':'white','text-align':'center'}),
+        html.Div([
+            dcc.Graph(id="id_beta",figure=cd.beta_distn())
+        ])
         ],className="beta"),
     
     
     # === 2.8 Pearson ===
     html.Div([
         html.H2("Pearson Distribution",style={'color':'white','text-align':'center'}),
+        html.Div([
+            dcc.Graph(id="id_pearson",figure=cd.pearson_distn())
+        ])
         ],className="pearson"),
     
     
     # === 2.9 Log-logistics ===
     html.Div([
         html.H2("Log-Logistics",style={'color':'white','text-align':'center'}),
+        html.Div([
+            dcc.Graph(id="id_loglogistics",figure=cd.log_logistics_distn())
+        ])
         ],className="logLogistics"),
     
     
     # === 2.10 Johnson ===
     html.Div([
         html.H2("Johnson",style={'color':'white','text-align':'center'}),
+        html.Div([
+            dcc.Graph(id="id_jhonson",figure=cd.johnson_distn())
+        ])
         ],className="johnson"),
     
     ],className="main-div"

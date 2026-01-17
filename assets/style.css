@@ -33,5 +33,40 @@ body {
 }
 
 
+.normal{
+    width: 80%;
+    margin-left: 150px;
+}
+
+
+.lognormal{
+    width: 80%;
+    margin-left: 150px;
+}
+
+
+.beta{
+    width: 80%;
+    margin-left: 150px;
+}
+
+.pearson{
+    width: 80%;
+    margin-left: 150px;
+}
+
+
+.logLogistics{
+    width: 80%;
+    margin-left: 150px;
+}
+
+
+.johnson{
+    width: 80%;
+    margin-left: 150px;
+}
+
+
 
 
