@@ -9,6 +9,7 @@ dependencies = [
     "dash-bootstrap-components>=2.0.4",
     "numpy>=2.4.1",
     "pandas>=2.3.3",
+    "scipy>=1.17.0",
 ]
 
 [dependency-groups]

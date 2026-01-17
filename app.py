@@ -6,6 +6,7 @@ from dash import html
 import plotly.express as px 
 import plotly.graph_objects as go 
 import dash_bootstrap_components as dbc 
+import plot.continous_distribution as cd 
 from dash.dependencies import Input,Output
 
 
@@ -28,27 +29,42 @@ app.layout = html.Div([
     # ==== 1. Heading =====
     html.Header(" Continous Random Distribution Curve ",className="PageHeading"),
 
+
+
     # ================ 2. Continous Random Distribution Curve ================
-    
     # === 2.1. uniform: ===
     html.Div([
         html.H2("Uniform Distribution",style={'color':'white','text-align':'center'}),
+        html.Div([
+            dcc.Graph(id="id_uniform",figure=cd.uniform_distn())
+        ])
         ],className="uniform"),
+    
     
     # === 2.2.Exponential ===
     html.Div([
         html.H2("Exponential Distribution",style={'color':'white','text-align':'center'}),
+        html.Div([
+            dcc.Graph(id="id_exponential",figure=cd.exponential_distn())
+        ])
         ],className="exponential"),
+    
     
     # === 2.3 Gamma ===
     html.Div([
         html.H2("Gamma Distribution",style={'color':'white','text-align':'center'}),
+        html.Div([
+            dcc.Graph(id="id_gamma",figure=cd.gamma_distn())
+        ])
         ],className="gamma"),
     
     
     # === 2.4 Weibull ===
     html.Div([
         html.H2("Weibull Distribution",style={'color':'white','text-align':'center'}),
+        html.Div([
+            dcc.Graph(id="id_weibull",figure=cd.weibull_distn())
+        ])
         ],className="weibull"),
     
     
