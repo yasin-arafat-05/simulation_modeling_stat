@@ -39,6 +39,7 @@ body {
 }
 
 
+
 .lognormal{
     width: 80%;
     margin-left: 150px;
@@ -68,5 +69,58 @@ body {
 }
 
 
+
+/* ===== UNIVERSAL SLIDER THEME ===== */
+
+/* rail  (full line) */
+.rc-slider-rail {
+    background-color: #310714 !important;
+    height: 6px;
+}
+
+/* active track (active part color)*/
+.rc-slider-track {
+    background-color: #1d2f33 !important;
+    height: 6px;
+}
+
+/* handle */
+.rc-slider-handle {
+    border: 3px solid #041d24 !important;
+    background-color: black !important;
+    width: 16px;
+    height: 16px;
+    margin-top: -5px;
+}
+
+/* hover */
+.rc-slider-handle:hover {
+    border-color: #ff4081 !important;
+}
+
+/* marks */
+.rc-slider-mark-text {
+    color: #aaa !important;
+    font-size: 12px;
+}
+.rc-slider-mark-text-active {
+    color: #00c8ff !important;
+}
+
+/* tooltip */
+.rc-slider-tooltip-inner {
+    background-color: #111 !important;
+    color: rgb(68, 29, 29) !important;
+    font-weight: bold;
+}
+
+/*  Slider dots (inactive)  */
+.rc-slider-dot {
+    border: 2px solid #222 !important;   
+    background-color: #111 !important;   
+    width: 8px;
+    height: 8px;
+    margin-top: -1px;
+}
 
 
