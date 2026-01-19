@@ -203,11 +203,63 @@ app.layout = html.Div([
     # ============================================================================================
     # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     
+    # ==== 1. Heading =====
+    html.Header(" Discreate Random Distribution Curve ",
+                className="PageHeading",style={'color':'orange'}),
+
     # ------------ 3.1 Bernoulli Distribution -----------------
+    html.Div([
+        html.H2("Bernoulli Distribution",style={'color':'purple','text-align':'center'}),
+        html.Div([
+            dcc.Markdown("""**Here, x is the number of input. For that we will calculate probabilty(p).**""",
+                        style={"color":"light-gray"}),
+            create_slider_row(label="(x): ",slider_id="x_slider_bernoulli",min_val=0,max_val=500,step=10,value=50,marks_step=50),
+            dcc.Graph(id="id_bernoulli")
+        ])
+        ],className="bernoulli"),
     
     
+    # ------------ 3.2 Binomial Distribution -----------------
+    html.Div([
+        html.H2("Binomial Distribution",style={'color':'purple','text-align':'center'}),
+        html.Div([
+            dcc.Markdown("""**Here, n is the number of trials and p is the probability of true.**""",
+                        style={"color":"light-gray"}),
+            create_slider_row(label="Number of trials(n): ",slider_id="n_slider_binomial",min_val=0,max_val=500,step=10,value=50,marks_step=50),
+            create_slider_row(label="Probability of true(p): ",slider_id="p_slider_binomial",min_val=0,max_val=1,step=0.1,value=0.5,marks_step=1),
+            dcc.Graph(id="id_binomial")
+        ])
+        ],className="boinomial"),
     
     
+    # ------------ 3.3 Descreate Uniform Distribution -----------------
+    html.Div([
+        html.H2("Descreate Uniform Distribution",style={'color':'purple','text-align':'center'}),
+        html.Div([
+            dcc.Markdown("""**Location Parameter, a(-inf,inf), Scale Parameter (b-a), Shape Parameter α1(-inf,inf) and α2> 0. And a<x<b**""",
+                        style={"color":"light-gray"}),
+            dcc.Graph(id="id_descreateuniform")
+        ])
+        ],className="descreateUniform"),
+    
+    
+    # ------------ 3.4 Poisson  Distribution -----------------
+    html.Div([
+        html.H2("Poisson Distribution",style={'color':'purple','text-align':'center'}),
+        html.Div([
+            dcc.Markdown("""**Location Parameter, a(-inf,inf), Scale Parameter (b-a), Shape Parameter α1(-inf,inf) and α2> 0. And a<x<b**""",
+                        style={"color":"light-gray"}),
+            dcc.Markdown("""- Where number of trials(n) is high.""",style={"color":"light-gray"}),
+            dcc.Markdown("""- Where probability(p) of success is very very low.""",style={"color":"light-gray"}),
+            dcc.Markdown("""- Where mean or lamda(λ) = n * p .""",style={"color":"light-gray"}),
+            dcc.Markdown("""- A company makes light. Intentionally that company will not make defective light. 
+                         If we assume sucess as finding defective light then there we will use Poission Distribution.""",
+                         style={"color":"light-gray"}),
+            create_slider_row(label="Value of X: ",slider_id="x_slider_poisson",min_val=0,max_val=50,step=10,value=10,marks_step=5),
+            create_slider_row(label="Value of Lamda: ",slider_id="lamda_slider_poisson",min_val=0,max_val=10,step=0.1,value=10,marks_step=1),
+            dcc.Graph(id="id_poisson")
+        ])
+        ],className="poisson"),
     
     ],className="main-div"
 )
@@ -336,6 +388,37 @@ def update_jonsonsb(a,b,alpha1,alpha2):
     if alpha2==0:
         alpha += 1
     return cd.johnson_distn(alpha1,alpha2,a,b)
+
+
+
+
+
+# =========================================================================================
+# =========================================================================================
+# ============================Discreate Random Variables ==================================
+# =========================================================================================
+# =========================================================================================
+
+# =========================1. Callbacks for Bernoulli=========================
+@app.callback(Output(component_id='id_bernoulli',component_property='figure'),
+              [Input(component_id="x_slider_bernoulli",component_property="value")])
+def update_bernoulli(x):
+    return cd.bernoulli_distn(x)
+
+
+# =========================2. Callbacks for Binomial=========================
+@app.callback(Output(component_id='id_binomial',component_property='figure'),
+              [Input(component_id="n_slider_binomial",component_property="value"),
+               Input(component_id="p_slider_binomial",component_property="value")])
+def update_binomial(n,p):
+    return cd.binomial_distn(n=n,p=p)
+
+# =========================4. Callbacks for Poisson=========================
+@app.callback(Output(component_id='id_poisson',component_property='figure'),
+              [Input(component_id="x_slider_poisson",component_property="value"),
+               Input(component_id="lamda_slider_poisson",component_property="value")])
+def update_binomial(n,lamda):
+    return cd.poisson_distn(n,lamda)
 
 
 # ======= For running The Application =======

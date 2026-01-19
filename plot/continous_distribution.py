@@ -270,3 +270,87 @@ def johnson_distn(alpha1,alpha2,a,b):
 # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 
+# ========= 3.1. Bernoulli Distribution =========
+def bernoulli_distn(n):
+    x = np.random.randint(0,2,n)
+    val = [0,1]
+    # probability of 1:
+    p = x.mean()
+    y = stats.bernoulli.pmf(val,p)
+    trace1 = go.Bar(x=val,y=y,name=f"probability 1 is: {p:.4f}",marker_color=['red', 'crimson'],
+                    width=0.5)
+    layout = go.Layout(
+        template="plotly_dark",
+        xaxis=dict(title="xaxis",showgrid=False),
+        yaxis=dict(title="yaxis",showgrid=False),
+        plot_bgcolor="black",
+        paper_bgcolor="black",
+        legend=dict(font=dict(size=20)),
+        showlegend=True
+    )
+    trace = [trace1]
+    fig = go.Figure(data=trace,layout=layout)
+    return fig   
+
+
+
+# ========= 3.2. Binomial Distribution =========
+def binomial_distn(n,p):
+    # n ta trail er jonno -- output (n+1)
+    x = np.arange(0,n+1)
+    y = stats.binom.pmf(x,n,p)
+    trace1 = go.Bar(x=x,y=y,name=f"p: {p} trials(n):{n}",marker_color="red")
+    layout = go.Layout(
+        template="plotly_dark",
+        xaxis=dict(title="xaxis",showgrid=False),
+        yaxis=dict(title="yaxis",showgrid=False),
+        plot_bgcolor="black",
+        paper_bgcolor="black",
+        legend=dict(font=dict(size=20)),
+        showlegend=True
+    )
+    trace = [trace1]
+    fig = go.Figure(data=trace,layout=layout)
+    return fig   
+
+
+
+# ========= 3.3. Discreate Uniform Distribution =========
+def discreate_uniform_distn(alpha1,alpha2,a,b):
+    # a<x<b: 
+    x = np.linspace(a+0.001,b-0.001,1000)
+    y = stats.johnsonsb.pdf(x,alpha1,alpha2,loc=a,scale=(b-a))
+    trace1 = go.Scatter(x=x,y=y,mode="lines",line=dict(color="red",width=6),
+                        name=f"alpha1: {alpha1}, alpha2: {alpha2}, a: {a}, b: {b}")
+    layout = go.Layout(
+        template="plotly_dark",
+        xaxis=dict(title="xaxis",showgrid=False),
+        yaxis=dict(title="yaxis",showgrid=False),
+        plot_bgcolor="black",
+        paper_bgcolor="black",
+        legend=dict(font=dict(size=20)),
+        showlegend=True
+    )
+    trace = [trace1]
+    fig = go.Figure(data=trace,layout=layout)
+    return fig   
+
+
+# ========= 3.4. Poisson Distribution =========
+def poisson_distn(n,lamda):
+    x = np.arange(0,n+1)
+    y = stats.poisson.pmf(x,lamda)
+    trace1 = go.Bar(x=x,y=y,name=f"lamda: {lamda}",marker_color="red",width=0.8)
+    layout = go.Layout(
+        template="plotly_dark",
+        xaxis=dict(title="xaxis",showgrid=False),
+        yaxis=dict(title="yaxis",showgrid=False),
+        plot_bgcolor="black",
+        paper_bgcolor="black",
+        legend=dict(font=dict(size=20)),
+        showlegend=True
+    )
+    trace = [trace1]
+    fig = go.Figure(data=trace,layout=layout)
+    return fig   
+
