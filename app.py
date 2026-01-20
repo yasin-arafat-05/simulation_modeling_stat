@@ -420,6 +420,9 @@ def update_binomial(n,p):
 def update_binomial(n,lamda):
     return cd.poisson_distn(n,lamda)
 
+# for hosting:
+
+server = app.server
 
 # ======= For running The Application =======
 if __name__=="__main__":
